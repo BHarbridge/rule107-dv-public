@@ -1,0 +1,460 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* LIGHT MODE */
+:root {
+  --button-outline: rgba(0, 0, 0, 0.1);
+  --badge-outline: rgba(0, 0, 0, 0.05);
+  --opaque-button-border-intensity: -8;
+  --elevate-1: rgba(0, 0, 0, 0.03);
+  --elevate-2: rgba(0, 0, 0, 0.08);
+  /* Industrial slate palette — cool, precise, data-dense. */
+  --background: 210 20% 98%;
+  --foreground: 215 25% 14%;
+  --border: 215 16% 88%;
+  --card: 0 0% 100%;
+  --card-foreground: 215 25% 14%;
+  --card-border: 215 16% 90%;
+  --sidebar: 215 30% 12%;
+  --sidebar-foreground: 210 20% 92%;
+  --sidebar-border: 215 25% 18%;
+  --sidebar-primary: 24 90% 55%;
+  --sidebar-primary-foreground: 215 30% 10%;
+  --sidebar-accent: 215 25% 18%;
+  --sidebar-accent-foreground: 210 20% 92%;
+  --sidebar-ring: 24 90% 55%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 25% 14%;
+  --popover-border: 215 16% 88%;
+  --primary: 215 60% 28%;
+  --primary-foreground: 210 20% 98%;
+  --secondary: 215 18% 92%;
+  --secondary-foreground: 215 25% 14%;
+  --muted: 215 18% 94%;
+  --muted-foreground: 215 12% 42%;
+  --accent: 24 90% 55%;
+  --accent-foreground: 215 30% 10%;
+  --destructive: 0 72% 42%;
+  --destructive-foreground: 0 0% 98%;
+  --input: 215 16% 82%;
+  --ring: 215 60% 28%;
+  --chart-1: 215 60% 35%;
+  --chart-2: 24 90% 52%;
+  --chart-3: 187 55% 38%;
+  --chart-4: 43 74% 49%;
+  --chart-5: 262 50% 48%;
+  --font-sans: 'Inter', 'Helvetica Neue', sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'Menlo', monospace;
+  --radius: 0.5rem;
+  --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0);
+  --shadow-xs: 0px 2px 0px 0px hsl(0 0% 0% / 0);
+  --shadow-sm: 0px 2px 0px 0px hsl(0 0% 0% / 0), 0px 1px 2px -1px hsl(0 0% 0% / 0);
+  --shadow: 0px 2px 0px 0px hsl(0 0% 0% / 0), 0px 1px 2px -1px hsl(0 0% 0% / 0);
+  --shadow-md: 0px 2px 0px 0px hsl(0 0% 0% / 0), 0px 2px 4px -1px hsl(0 0% 0% / 0);
+  --shadow-lg: 0px 2px 0px 0px hsl(0 0% 0% / 0), 0px 4px 6px -1px hsl(0 0% 0% / 0);
+  --shadow-xl: 0px 2px 0px 0px hsl(0 0% 0% / 0), 0px 8px 10px -1px hsl(0 0% 0% / 0);
+  --shadow-2xl: 0px 2px 0px 0px hsl(0 0% 0% / 0);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+
+  /* Fallback for older browsers */
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-primary-border: hsl(
+    from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --sidebar-accent-border: hsl(
+    from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --primary-border: hsl(var(--primary));
+  --primary-border: hsl(
+    from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --secondary-border: hsl(var(--secondary));
+  --secondary-border: hsl(
+    from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --muted-border: hsl(var(--muted));
+  --muted-border: hsl(
+    from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --accent-border: hsl(var(--accent));
+  --accent-border: hsl(
+    from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --destructive-border: hsl(var(--destructive));
+  --destructive-border: hsl(
+    from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+}
+
+.dark {
+  --button-outline: rgba(255, 255, 255, 0.1);
+  --badge-outline: rgba(255, 255, 255, 0.05);
+  --opaque-button-border-intensity: 9;
+  --elevate-1: rgba(255, 255, 255, 0.04);
+  --elevate-2: rgba(255, 255, 255, 0.09);
+  --background: 215 30% 8%;
+  --foreground: 210 20% 96%;
+  --border: 215 20% 18%;
+  --card: 215 28% 11%;
+  --card-foreground: 210 20% 96%;
+  --card-border: 215 22% 16%;
+  --sidebar: 215 32% 7%;
+  --sidebar-foreground: 210 20% 92%;
+  --sidebar-border: 215 25% 14%;
+  --sidebar-primary: 24 90% 58%;
+  --sidebar-primary-foreground: 215 30% 10%;
+  --sidebar-accent: 215 25% 16%;
+  --sidebar-accent-foreground: 210 20% 92%;
+  --sidebar-ring: 24 90% 58%;
+  --popover: 215 28% 13%;
+  --popover-foreground: 210 20% 96%;
+  --popover-border: 215 22% 18%;
+  --primary: 24 90% 58%;
+  --primary-foreground: 215 30% 10%;
+  --secondary: 215 22% 18%;
+  --secondary-foreground: 210 20% 96%;
+  --muted: 215 22% 16%;
+  --muted-foreground: 215 15% 65%;
+  --accent: 215 25% 20%;
+  --accent-foreground: 210 20% 96%;
+  --destructive: 0 72% 48%;
+  --destructive-foreground: 0 0% 98%;
+  --input: 215 20% 24%;
+  --ring: 24 90% 58%;
+  --chart-1: 215 55% 62%;
+  --chart-2: 24 90% 60%;
+  --chart-3: 187 55% 55%;
+  --chart-4: 43 74% 65%;
+  --chart-5: 262 55% 70%;
+  --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0);
+  --shadow-xs: 0px 2px 0px 0px hsl(0 0% 0% / 0);
+  --shadow-sm: 0px 2px 0px 0px hsl(0 0% 0% / 0), 0px 1px 2px -1px hsl(0 0% 0% / 0);
+  --shadow: 0px 2px 0px 0px hsl(0 0% 0% / 0), 0px 1px 2px -1px hsl(0 0% 0% / 0);
+  --shadow-md: 0px 2px 0px 0px hsl(0 0% 0% / 0), 0px 2px 4px -1px hsl(0 0% 0% / 0);
+  --shadow-lg: 0px 2px 0px 0px hsl(0 0% 0% / 0), 0px 4px 6px -1px hsl(0 0% 0% / 0);
+  --shadow-xl: 0px 2px 0px 0px hsl(0 0% 0% / 0), 0px 8px 10px -1px hsl(0 0% 0% / 0);
+  --shadow-2xl: 0px 2px 0px 0px hsl(0 0% 0% / 0);
+
+  /* Fallback for older browsers */
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-primary-border: hsl(
+    from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --sidebar-accent-border: hsl(
+    from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --primary-border: hsl(var(--primary));
+  --primary-border: hsl(
+    from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --secondary-border: hsl(var(--secondary));
+  --secondary-border: hsl(
+    from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --muted-border: hsl(var(--muted));
+  --muted-border: hsl(
+    from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --accent-border: hsl(var(--accent));
+  --accent-border: hsl(
+    from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --destructive-border: hsl(var(--destructive));
+  --destructive-border: hsl(
+    from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/**
+ * Using the elevate system.
+ * Automatic contrast adjustment.
+ *
+ * <element className="hover-elevate" />
+ * <element className="active-elevate-2" />
+ *
+ * // Using the tailwind utility when a data attribute is "on"
+ * <element className="toggle-elevate data-[state=on]:toggle-elevated" />
+ * // Or manually controlling the toggle state
+ * <element className="toggle-elevate toggle-elevated" />
+ *
+ * Elevation systems have to handle many states.
+ * - not-hovered, vs. hovered vs. active  (three mutually exclusive states)
+ * - toggled or not
+ * - focused or not (this is not handled with these utilities)
+ *
+ * Even without handling focused or not, this is six possible combinations that
+ * need to be distinguished from eachother visually.
+ */
+@layer utilities {
+  /* Hide ugly search cancel button in Chrome until we can style it properly */
+  input[type='search']::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+
+  /* Placeholder styling for contentEditable div */
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+  }
+
+  /* .no-default-hover-elevate/no-default-active-elevate is an escape hatch so consumers of
+   * buttons/badges can remove the automatic brightness adjustment on interactions
+   * and program their own. */
+  .no-default-hover-elevate {
+  }
+
+  .no-default-active-elevate {
+  }
+
+  /**
+   * Toggleable backgrounds go behind the content. Hoverable/active goes on top.
+   * This way they can stack/compound. Both will overlap the parent's borders!
+   * So borders will be automatically adjusted both on toggle, and hover/active,
+   * and they will be compounded.
+   */
+  .toggle-elevate::before,
+  .toggle-elevate-2::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    /*border-radius: inherit;   match rounded corners */
+    border-radius: inherit;
+    z-index: -1;
+    /* sits behind content but above backdrop */
+  }
+
+  .toggle-elevate.toggle-elevated::before {
+    background-color: var(--elevate-2);
+  }
+
+  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
+  .border.toggle-elevate::before {
+    inset: -1px;
+  }
+
+  /* Does not work on elements with overflow:hidden! */
+  .hover-elevate:not(.no-default-hover-elevate),
+  .active-elevate:not(.no-default-active-elevate),
+  .hover-elevate-2:not(.no-default-hover-elevate),
+  .active-elevate-2:not(.no-default-active-elevate) {
+    position: relative;
+    z-index: 0;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate)::after,
+  .active-elevate:not(.no-default-active-elevate)::after,
+  .hover-elevate-2:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:not(.no-default-active-elevate)::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    /*border-radius: inherit;   match rounded corners */
+    border-radius: inherit;
+    z-index: 999;
+    /* sits in front of content */
+  }
+
+  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-1);
+  }
+
+  .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-2);
+  }
+
+  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
+    inset: -1px;
+  }
+}
+
+/* Utility: hide scrollbar while keeping scroll functionality */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ============================================================
+   PRINT / PDF styles — scoped to .print-root (a panel marked
+   printable). Everything outside is hidden so the browser's
+   native Print → Save as PDF produces a clean, shareable doc.
+   ============================================================ */
+@media print {
+  /* Page size & margins */
+  @page {
+    size: Letter;
+    margin: 0.5in;
+  }
+
+  /* Hide everything by default... */
+  body * {
+    visibility: hidden;
+  }
+
+  /* ...then reveal the print panel and all its descendants. */
+  .print-root,
+  .print-root * {
+    visibility: visible;
+  }
+
+  /* Pin the panel to the top of the page, full width, no borders */
+  .print-root {
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    color: #000 !important;
+  }
+
+  /* Show the print-only header; hide interactive buttons. */
+  .print-only { display: block !important; }
+  .no-print { display: none !important; }
+
+  /* Neutralize card chrome */
+  .print-root [class*="bg-card"],
+  .print-root [class*="bg-background"],
+  .print-root .bg-destructive\/5 {
+    background: white !important;
+  }
+  .print-root .border,
+  .print-root .border-b,
+  .print-root .border-t,
+  .print-root .border-card-border,
+  .print-root [class*="divide-"] > * + * {
+    border-color: #cbd5e1 !important;
+  }
+
+  /* Tighten vertical rhythm for single-page fit */
+  .print-root .p-5 { padding: 10px 0 !important; }
+  .print-root .p-6 { padding: 10px 0 !important; }
+  .print-root .px-6 { padding-left: 0 !important; padding-right: 0 !important; }
+  .print-root .py-5 { padding-top: 10px !important; padding-bottom: 10px !important; }
+  .print-root .gap-5 { gap: 12px !important; }
+  .print-root .gap-4 { gap: 10px !important; }
+  .print-root .mt-3 { margin-top: 6px !important; }
+  .print-root .mb-2 { margin-bottom: 4px !important; }
+
+  /* Force readable text colors */
+  .print-root .text-muted-foreground,
+  .print-root [class*="text-muted"] {
+    color: #475569 !important;
+  }
+  .print-root .text-accent-foreground {
+    color: #000 !important;
+    font-weight: 600;
+  }
+
+  /* Hide elements explicitly marked no-print (e.g. action buttons) */
+  .print-root .no-print,
+  .print-root [data-no-print] {
+    display: none !important;
+  }
+
+  /* Avoid splitting tables/sections across pages where possible */
+  .print-root table,
+  .print-root .avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Keep tables legible */
+  .print-root table { font-size: 10.5px !important; width: 100%; }
+  .print-root th, .print-root td { padding: 4px 6px !important; }
+
+  /* Print header styling */
+  .print-header {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid #0f172a;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  .print-header .brand {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #0f172a;
+  }
+  .print-header .brand-sub {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+  .print-header .meta {
+    font-size: 10px;
+    color: #334155;
+    text-align: right;
+    line-height: 1.45;
+  }
+
+  .print-footer {
+    display: block !important;
+    margin-top: 14px;
+    padding-top: 6px;
+    border-top: 1px solid #cbd5e1;
+    font-size: 9px;
+    color: #64748b;
+    text-align: center;
+  }
+}
+
+/* Hide print-only elements on screen */
+.print-only,
+.print-header,
+.print-footer {
+  display: none;
+}
