@@ -8,7 +8,7 @@ import {
   type EquipmentType,
   type AbRateBasis,
   type AbItemInput,
-} from "@shared/rule107";
+} from "../shared/rule107";
 
 /* ---------------------------------------------------------------- helpers */
 

@@ -12,7 +12,9 @@ export default defineConfig({
     },
   },
   root: path.resolve(import.meta.dirname, "client"),
-  base: "./",
+  // base: "./" works for sandboxed iframes but breaks sub-routes on real hosting.
+  // Vercel / custom domain serves from root, so use "/".
+  base: process.env.VERCEL ? "/" : "./",
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
