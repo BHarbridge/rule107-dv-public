@@ -173,12 +173,20 @@ export default function NewCalculationPage() {
                 <Input inputMode="decimal" data-testid="input-original-cost" placeholder="0.00" value={form.originalCost} onChange={(e) => set("originalCost", e.target.value)} />
               </Field>
               <Field className="col-span-12 sm:col-span-12" label="Equipment Type*">
-                <Select value={form.equipmentType} onValueChange={(v) => set("equipmentType", v as EquipmentType)}>
-                  <SelectTrigger data-testid="select-equipment-type"><SelectValue /></SelectTrigger>
-                  <SelectContent>
+                <Select
+                  value={carRates.length ? form.equipmentType : undefined}
+                  onValueChange={(v) => set("equipmentType", v as EquipmentType)}
+                  disabled={carRates.length === 0}
+                >
+                  <SelectTrigger data-testid="select-equipment-type" className="w-full">
+                    <SelectValue placeholder={carRates.length ? "Select equipment type…" : "Loading equipment types…"} />
+                  </SelectTrigger>
+                  <SelectContent position="popper" sideOffset={4} className="max-h-[60vh] w-[var(--radix-select-trigger-width)]">
                     {carRates.map((r) => (
                       <SelectItem key={r.equipment_type} value={r.equipment_type}>
-                        {r.display_name}  · {fmtPct(r.annual_rate, 3)}/yr · cutoff {r.age_cutoff_years}y
+                        <span className="block whitespace-normal break-words leading-snug">
+                          {r.display_name} · {fmtPct(r.annual_rate, 3)}/yr · cutoff {r.age_cutoff_years}y
+                        </span>
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -221,9 +229,11 @@ export default function NewCalculationPage() {
                   return (
                     <div key={i} className="grid grid-cols-12 gap-3 items-end p-3 rounded-md border border-card-border bg-card">
                       <Field className="col-span-12 sm:col-span-3" label="Code">
-                        <Select value={row.code} onValueChange={(v) => setAb(i, { code: v })}>
-                          <SelectTrigger data-testid={`select-ab-code-${i}`}><SelectValue /></SelectTrigger>
-                          <SelectContent className="max-h-64">
+                        <Select value={row.code || undefined} onValueChange={(v) => setAb(i, { code: v })} disabled={abCodes.length === 0}>
+                          <SelectTrigger data-testid={`select-ab-code-${i}`} className="w-full">
+                            <SelectValue placeholder={abCodes.length ? "Code…" : "Loading…"} />
+                          </SelectTrigger>
+                          <SelectContent position="popper" sideOffset={4} className="max-h-[60vh] w-[var(--radix-select-trigger-width)]">
                             {abCodes.map((c) => (
                               <SelectItem key={c.code} value={c.code}>
                                 {c.code} · {c.rate_basis === "MONTHLY" ? `${fmtPct(c.rate)}/mo` : c.rate_basis === "SAME_AS_CAR" ? "same as car" : `${fmtPct(c.rate)}/yr`}
