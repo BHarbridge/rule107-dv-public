@@ -85,37 +85,38 @@ function parseInputs(body: any, abCodes: Map<string, { rate_basis: AbRateBasis; 
  * quarter/year — so the UI can show an amber "update quarterly pricing"
  * banner that self-subsides once the rows are added.
  *
- * Logic:
- *  • Cost Factors are annual — a row with the current year must exist.
- *  • Salvage Quarters are quarterly — a row with quarter_code `YYYY * 10 + Q` must exist.
- *  • A&B Codes are quarterly — at least one row whose publication_q = current quarter must exist.
- *    (A&B codes refresh periodically; the tombstone is "did AAR publish new values this quarter".)
+ * Logic (per AAR Office Manual Rule 107.E):
+ *  • Cost Factors are annual. Rule 107.E.2 uses the factor for the year PRIOR
+ *    to the incident year (e.g. a 2026 incident uses the 2025 factor). Treat
+ *    cost_factors as stale only if the prior-year row is missing.
+ *  • Salvage Quarters are quarterly — a row with quarter_code `YYYY*10 + Q` must
+ *    exist for the current quarter.
+ *  • A&B Codes are reference-only and only change when AAR revises Exhibit V.
+ *    They are NOT published on a fixed quarterly cadence, so they are never
+ *    flagged as stale automatically.
  */
 async function computeFreshness() {
   const now = new Date();
   const year = now.getUTCFullYear();
   const q = Math.floor(now.getUTCMonth() / 3) + 1;
   const quarterCode = year * 10 + q;
+  const priorYear = year - 1;
 
-  const [cfRes, sqRes, abRes] = await Promise.all([
-    supabase.from("dv_cost_factors").select("year", { count: "exact", head: false }).eq("year", year),
+  const [cfRes, sqRes] = await Promise.all([
+    supabase.from("dv_cost_factors").select("year", { count: "exact", head: false }).eq("year", priorYear),
     supabase.from("dv_salvage_quarters").select("quarter_code", { count: "exact", head: false }).eq("quarter_code", quarterCode),
-    supabase.from("dv_ab_codes").select("publication_q", { count: "exact", head: false }).eq("publication_q", quarterCode),
   ]);
 
   const stale: string[] = [];
   if (!cfRes.error && (cfRes.data?.length ?? 0) === 0) stale.push("cost_factors");
   if (!sqRes.error && (sqRes.data?.length ?? 0) === 0) stale.push("salvage_quarters");
-  // A&B codes: only treat as stale if a publication for THIS quarter hasn't landed.
-  // If you only refresh A&B codes when AAR actually publishes them, you can turn this off
-  // by removing the check — but the user asked for quarterly nudges.
-  if (!abRes.error && (abRes.data?.length ?? 0) === 0) stale.push("ab_codes");
 
   return {
     currentYear: year,
     currentQuarter: q,
     currentQuarterCode: quarterCode,
     currentQuarterLabel: `${year} Q${q}`,
+    priorYear,
     staleTables: stale,
     isStale: stale.length > 0,
   };
